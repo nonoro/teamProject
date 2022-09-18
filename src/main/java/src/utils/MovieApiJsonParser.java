@@ -3,23 +3,23 @@ package src.utils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import src.response.MovieApiResponse;
 
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MovieApiJsonParser {
     private static String API_KEY = "6664422d5d826ebd760816a5fb0fe419";
+//    private static String API_KEY = "f2be8dea6d81c9b399f0d5a92c2983f9";
 
     // Deseriallizer : json값을 객체로받아온거 , seriallizer : 객체로받아온걸 내보내는거
     // 여기에 사용된 라이브러리가 젝슨라이브러리
     private static ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-    private static String BASE_URL = "https://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=" + API_KEY;
+    private static String BASE_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=" + API_KEY;
 
-    public static MovieApiResponse getObject(String openStartDate, int itemPerPage) {
+    public static MovieApiResponse getObject(String movieId) {
         String requestUrl = BASE_URL;
-        requestUrl += "&openStartDt=" + openStartDate;
-        requestUrl += "&itemPerPage=" + itemPerPage;
-
+        requestUrl += "&movieCd=" + movieId;
 
         System.out.println("Request API URL = " + requestUrl);
         MovieApiResponse result;

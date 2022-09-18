@@ -1,14 +1,13 @@
 package src.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import src.response.MovieApiResponse;
-
+import src.response.MovieInfoResultResponse;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class MovieApiJsonParser {
+public class MovieInfoResultApiJsonParser {
     private static String API_KEY = "6664422d5d826ebd760816a5fb0fe419";
 //    private static String API_KEY = "f2be8dea6d81c9b399f0d5a92c2983f9";
 
@@ -17,15 +16,15 @@ public class MovieApiJsonParser {
     private static ObjectMapper OBJECT_MAPPER = new ObjectMapper();
     private static String BASE_URL = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=" + API_KEY;
 
-    public static MovieApiResponse getObject(String movieId) {
+    public static MovieInfoResultResponse getObject(String movieId) {
         String requestUrl = BASE_URL;
         requestUrl += "&movieCd=" + movieId;
 
         System.out.println("Request API URL = " + requestUrl);
-        MovieApiResponse result;
+        MovieInfoResultResponse result;
 
         try {
-            result = OBJECT_MAPPER.readValue(createUrl(requestUrl), MovieApiResponse.class);
+            result = OBJECT_MAPPER.readValue(createUrl(requestUrl), MovieInfoResultResponse.class);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
